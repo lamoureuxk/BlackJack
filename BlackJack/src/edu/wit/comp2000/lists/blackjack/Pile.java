@@ -20,7 +20,7 @@ public class Pile
 	
 	public void shuffle() { Collections.shuffle(cards); }
 	
-	protected void sortPile() { Collections.sort(cards); }	//protected so we do not sort a deck, only a hand
+	public void sortPile() { Collections.sort(cards); }	
 	
 	public boolean isEmpty() { return cards.isEmpty(); }
 	
