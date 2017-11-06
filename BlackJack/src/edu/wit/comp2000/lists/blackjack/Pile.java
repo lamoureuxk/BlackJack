@@ -3,9 +3,7 @@ package edu.wit.comp2000.lists.blackjack;
 import java.util.*;
 
 /**
- * 
  * @author Karl Lamoureux
- *
  */
 public class Pile {
 	
@@ -13,7 +11,12 @@ public class Pile {
 	
 	public boolean addCard(Card e) { return cards.add(e); }
 	
-	public Card removeCard() { return cards.remove(0); }
+	public Card drawCard() 
+	{ 
+		if(!cards.isEmpty()) return cards.remove(0); 
+		
+		else return null; //to be changed later if needed
+	}
 	
 	public void shuffle() { Collections.shuffle(cards); }
 	
@@ -25,14 +28,12 @@ public class Pile {
 	public String toString() 
 	{
 		String output="";
-		for(Card c  : cards) 
-		{
-			output+= (c+", ");
-		}
 		
-		output= output.substring(0, output.length()-2);
+		for(Card c  : cards) { output+= (c+", "); }
 		
-		return output;
+		return output.substring(0, output.length()-2);
+		
+		
 	}
 
 }

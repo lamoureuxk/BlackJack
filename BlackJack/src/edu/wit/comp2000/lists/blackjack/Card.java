@@ -21,7 +21,6 @@ public class Card implements Comparable<Card>
 		ace= a;
 	}
 	
-	public String toString() {return value+" of "+suit;}
 	
 	public boolean isAce() {return ace;} 
 	
@@ -31,5 +30,20 @@ public class Card implements Comparable<Card>
 	
 	@Override
 	public int compareTo(Card other) { return ((Integer)this.value).compareTo(other.value); }
+	
+	@Override
+	public String toString() 
+	{
+		if(ace) return "Ace of "+suit;
+		
+		else if(value>10) 
+		{
+			if(value==11) return "Jack of "+value;
+			if(value==12) return "Queen of "+value;
+			if(value==13) return "King of "+value;
+		}
+		
+		return value+" of "+suit;
+	}
 	
 }
