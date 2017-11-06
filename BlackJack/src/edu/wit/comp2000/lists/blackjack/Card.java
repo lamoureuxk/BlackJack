@@ -1,4 +1,4 @@
-package edu.wit.comp2000.lists.blackjack;
+package edu.wit.comp2000.lists.blackjack;//master edit only
 
 /** 
  * @author Karl Lamoureux
