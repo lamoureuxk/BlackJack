@@ -56,8 +56,17 @@ public class Card implements Comparable<Card>
 		System.out.println(new Card(3, Suit.Hearts, true));	  //Ace of Hearts  (Even though value should be 3)
 		System.out.println(new Card(12, Suit.Spades, false)+"\n"); //Queen of Spades
 		
-		Card c = new Card(12, Suit.Clubs, false);
-		System.out.println(c+" value: "+c.getValue()); //value is 10 for blackjack
+		Card queen = new Card(12, Suit.Clubs, false);
+		Card three = new Card(3, Suit.Hearts, false);
+		Card king = new Card(13, Suit.Diamonds, false);
+		Card ace = new Card (14, Suit.Spades, true);
+		System.out.println(queen+" value: "+queen.getValue()+"\n"); //value is 10 for blackjack
+		
+		System.out.println("Result of queen.compareTo(three): "+queen.compareTo(three));//1
+		System.out.println("Result of queen.compareTo(king): "+queen.compareTo(king));	//0
+		System.out.println("Result of three.compareTo(three): "+three.compareTo(three));//0
+		System.out.println("Result of three.compareTo(king): "+three.compareTo(king));	//-1
+		System.out.println("Result of queen.compareTo(ace): "+queen.compareTo(ace));	//-1
 	}
 	
 }

@@ -5,8 +5,8 @@ import java.util.*;
 /**
  * @author Karl Lamoureux
  */
-public class Pile {
-	
+public class Pile 
+{
 	protected ArrayList<Card> cards;
 	
 	public boolean addCard(Card e) { return cards.add(e); }
@@ -20,7 +20,7 @@ public class Pile {
 	
 	public void shuffle() { Collections.shuffle(cards); }
 	
-	public void sort() { Collections.sort(cards); }
+	protected void sortPile() { Collections.sort(cards); }	//protected so we do not sort a deck, only a hand
 	
 	public boolean isEmpty() { return cards.isEmpty(); }
 	
@@ -52,7 +52,7 @@ public class Pile {
 		
 		System.out.println("Pile has cards: "+p);
 		
-		p.sort();
+		p.sortPile();
 		System.out.println("Sorting Pile by blackjack value: "+p); 
 		p.shuffle();
 		System.out.println("Shuffling Pile: "+p);
