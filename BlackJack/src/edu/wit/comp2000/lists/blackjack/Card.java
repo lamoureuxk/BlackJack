@@ -34,10 +34,19 @@ public class Card implements Comparable<Card>
 		if(ace) {value=11;}
 	}
 	
+	/**
+	 * @return boolean representing if card is an ace
+	 */
 	public boolean isAce() {return ace;} 
 	
+	/**
+	 * @return blackjack numerical value of card (ace is 11 by default)
+	 */
 	public int getValue() {return value;}
 	
+	/**
+	 * @return enum for suit
+	 */
 	public Suit getSuit() {return suit;}
 	
 	/**
