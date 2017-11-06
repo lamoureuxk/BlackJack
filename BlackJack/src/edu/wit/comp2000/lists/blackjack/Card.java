@@ -6,6 +6,7 @@ package edu.wit.comp2000.lists.blackjack;
 public class Card implements Comparable<Card>
 {	
 	private int value;
+	private faceCard face;
 	private Suit suit; //enum
 	private boolean ace;
 	
@@ -14,6 +15,15 @@ public class Card implements Comparable<Card>
 		value = val;
 		suit = s;
 		ace= a;
+		
+		switch (val) 
+		{
+		case 11: face= faceCard.Jack; break;
+		case 12: face= faceCard.Queen; break;
+		case 13: face= faceCard.King; break;
+		default: face= faceCard.Number; break;
+		}
+		
 		if(value>10) {value=10;}
 		if(ace) {value=11;}
 	}
@@ -33,15 +43,15 @@ public class Card implements Comparable<Card>
 	{
 		if(ace) return "Ace of "+suit;
 		
-		else if(value>10) 
+		else if(face!=faceCard.Number) 
 		{
-			if(value==11) return "Jack of "+value;
-			if(value==12) return "Queen of "+value;
-			if(value==13) return "King of "+value;
+			return face+" of "+suit;
 		}
 		
 		return value+" of "+suit;
 	}
+	
+	private enum faceCard{King, Queen, Jack, Number}
 	
 	public static void main(String[] args) 
 	{
