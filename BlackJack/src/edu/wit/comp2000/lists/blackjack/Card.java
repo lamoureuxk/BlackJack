@@ -6,7 +6,7 @@ package edu.wit.comp2000.lists.blackjack;
 public class Card implements Comparable<Card>
 {
 	private int value;
-	private Suit suit;
+	private Suit suit; //enum
 	private boolean ace;
 	
 	public static void main(String[] args) 
