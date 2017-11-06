@@ -1,6 +1,6 @@
 package edu.wit.comp2000.lists.blackjack;
 
-/**
+/** 
  * @author Karl Lamorueux
  */
 public class Card implements Comparable<Card>
