@@ -1,7 +1,7 @@
 package edu.wit.comp2000.lists.blackjack;
 
 /** 
- * @author Karl Lamorueux
+ * @author Karl Lamoureux
  */
 public class Card implements Comparable<Card>
 {	
@@ -24,10 +24,10 @@ public class Card implements Comparable<Card>
 		
 		switch (val) 
 		{
-		case 11: face= faceCard.Jack; break;
-		case 12: face= faceCard.Queen; break;
-		case 13: face= faceCard.King; break;
-		default: face= faceCard.Number; break;
+			case 11: face= faceCard.Jack; break;
+			case 12: face= faceCard.Queen; break;
+			case 13: face= faceCard.King; break;
+			default: face= faceCard.Number; break;
 		}
 		
 		if(value>10) {value=10;}
