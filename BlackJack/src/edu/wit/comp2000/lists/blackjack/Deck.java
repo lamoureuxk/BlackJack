@@ -7,6 +7,9 @@ package edu.wit.comp2000.lists.blackjack;
  */
 public class Deck extends Pile
 {
+	/**
+	 * Populates list with standard 52 playing cards, then shuffles the list
+	 */
 	public Deck() 
 	{
 		for(int i=2; i<=14; i++) { cards.add(new Card(i, Suit.Clubs, i==14)); }
