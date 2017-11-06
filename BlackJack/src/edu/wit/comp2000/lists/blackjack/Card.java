@@ -43,10 +43,7 @@ public class Card implements Comparable<Card>
 	{
 		if(ace) return "Ace of "+suit;
 		
-		else if(face!=faceCard.Number) 
-		{
-			return face+" of "+suit;
-		}
+		else if(face!=faceCard.Number) { return face+" of "+suit; }
 		
 		return value+" of "+suit;
 	}
@@ -55,7 +52,10 @@ public class Card implements Comparable<Card>
 	
 	public static void main(String[] args) 
 	{
-		System.out.println(new Card(3, Suit.Clubs, false));
+		System.out.println(new Card(3, Suit.Clubs, false));	  //3 of Clubs
+		System.out.println(new Card(14, Suit.Diamonds, true));//Ace of Diamonds
+		System.out.println(new Card(3, Suit.Hearts, true));	  //Ace of Hearts  (Even though value should be 3)
+		System.out.println(new Card(12, Suit.Spades, false)); //Queen of Spades
 	}
 	
 }

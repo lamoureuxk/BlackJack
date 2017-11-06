@@ -33,5 +33,10 @@ public class Pile {
 		
 		return output.substring(0, output.length()-2);
 	}
+	
+	public static void main(String[] args) 
+	{
+		
+	}
 
 }
