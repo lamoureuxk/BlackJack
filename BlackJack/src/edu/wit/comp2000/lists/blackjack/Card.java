@@ -7,7 +7,7 @@ public class Card implements Comparable<Card>
 {	
 	private int value;
 	private faceCard face;	//for now this is just for toString because jacks, queens, and kings have value 10
-	private Suit suit; //enum
+	private Suit suit; 
 	private boolean ace;
 	
 	public Card(int val, Suit s, boolean a) 
@@ -27,7 +27,6 @@ public class Card implements Comparable<Card>
 		if(value>10) {value=10;}
 		if(ace) {value=11;}
 	}
-	
 	
 	public boolean isAce() {return ace;} 
 	
