@@ -20,4 +20,12 @@ public class Deck extends Pile
 		shuffle();
 	}
 	
+	public static void main(String [] args) 
+	{
+		Deck x = new Deck();
+		System.out.println(x+"\n");
+		x.shuffle();
+		System.out.println(x+"\n");
+	}
+	
 }//end of class

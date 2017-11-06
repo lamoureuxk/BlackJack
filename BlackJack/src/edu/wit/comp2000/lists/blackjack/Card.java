@@ -4,15 +4,10 @@ package edu.wit.comp2000.lists.blackjack;
  * @author Karl Lamorueux
  */
 public class Card implements Comparable<Card>
-{
+{	
 	private int value;
 	private Suit suit; //enum
 	private boolean ace;
-	
-	public static void main(String[] args) 
-	{
-		System.out.println(new Card(3, Suit.Clubs, false));
-	}
 	
 	public Card(int val, Suit s, boolean a) 
 	{
@@ -46,6 +41,11 @@ public class Card implements Comparable<Card>
 		}
 		
 		return value+" of "+suit;
+	}
+	
+	public static void main(String[] args) 
+	{
+		System.out.println(new Card(3, Suit.Clubs, false));
 	}
 	
 }
