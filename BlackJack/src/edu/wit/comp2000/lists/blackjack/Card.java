@@ -54,7 +54,10 @@ public class Card implements Comparable<Card>
 		System.out.println(new Card(3, Suit.Clubs, false));	  //3 of Clubs
 		System.out.println(new Card(14, Suit.Diamonds, true));//Ace of Diamonds
 		System.out.println(new Card(3, Suit.Hearts, true));	  //Ace of Hearts  (Even though value should be 3)
-		System.out.println(new Card(12, Suit.Spades, false)); //Queen of Spades
+		System.out.println(new Card(12, Suit.Spades, false)+"\n"); //Queen of Spades
+		
+		Card c = new Card(12, Suit.Clubs, false);
+		System.out.println(c+" value: "+c.getValue()); //value is 10 for blackjack
 	}
 	
 }

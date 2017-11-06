@@ -20,6 +20,8 @@ public class Pile {
 	
 	public void shuffle() { Collections.shuffle(cards); }
 	
+	public void sort() { Collections.sort(cards); }
+	
 	public boolean isEmpty() { return cards.isEmpty(); }
 	
 	public Pile() {cards = new ArrayList<Card>();}
@@ -27,6 +29,8 @@ public class Pile {
 	@Override
 	public String toString() 
 	{
+		if(this.isEmpty()) return "Pile is Empty";
+		
 		String output="";
 		
 		for(Card c  : cards) { output+= (c+", "); }
@@ -36,6 +40,24 @@ public class Pile {
 	
 	public static void main(String[] args) 
 	{
+		Pile p = new Pile();
+		
+		System.out.println("Pile created, has cards: "+p);
+		
+		System.out.println("Adding Queen of Hearts, Ace of Spades, and 3 of Diamonds");
+		
+		p.addCard(new Card(12, Suit.Hearts, false));
+		p.addCard(new Card(14, Suit.Spades, true));
+		p.addCard(new Card(3, Suit.Diamonds, false));
+		
+		System.out.println("Pile has cards: "+p);
+		
+		p.sort();
+		System.out.println("Sorting Pile by blackjack value: "+p); 
+		p.shuffle();
+		System.out.println("Shuffling Pile: "+p);
+		
+		
 		
 	}
 
