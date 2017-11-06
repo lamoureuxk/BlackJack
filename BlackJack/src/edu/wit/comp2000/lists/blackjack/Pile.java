@@ -26,6 +26,8 @@ public class Pile
 	
 	public boolean isEmpty() { return cards.isEmpty(); }
 	
+	public int size() {return cards.size();}
+	
 	@Override
 	public String toString() 
 	{
@@ -56,8 +58,6 @@ public class Pile
 		System.out.println("Sorting Pile by blackjack value: "+p); 
 		p.shuffle();
 		System.out.println("Shuffling Pile: "+p);
-		
-		
 		
 	}
 
