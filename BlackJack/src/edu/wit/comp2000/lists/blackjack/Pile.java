@@ -22,7 +22,7 @@ public class Pile
 	
 	public void shuffle() { Collections.shuffle(cards); }
 	
-	public void sortPile() { Collections.sort(cards); }	
+	public void sort() { Collections.sort(cards); }	
 	
 	public boolean isEmpty() { return cards.isEmpty(); }
 	
@@ -52,7 +52,7 @@ public class Pile
 		
 		System.out.println("Pile has cards: "+p);
 		
-		p.sortPile();
+		p.sort();
 		System.out.println("Sorting Pile by blackjack value: "+p); 
 		p.shuffle();
 		System.out.println("Shuffling Pile: "+p);
