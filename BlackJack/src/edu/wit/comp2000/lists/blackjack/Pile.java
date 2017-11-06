@@ -9,6 +9,8 @@ public class Pile
 {
 	protected ArrayList<Card> cards;
 	
+	public Pile() {cards = new ArrayList<Card>();}
+	
 	public boolean addCard(Card e) { return cards.add(e); }
 	
 	public Card drawCard() 
@@ -23,8 +25,6 @@ public class Pile
 	public void sortPile() { Collections.sort(cards); }	
 	
 	public boolean isEmpty() { return cards.isEmpty(); }
-	
-	public Pile() {cards = new ArrayList<Card>();}
 	
 	@Override
 	public String toString() 
