@@ -19,6 +19,8 @@ public class Card implements Comparable<Card>
 		value = val;
 		suit = s;
 		ace= a;
+		if(val>10) {val=10;}
+		if(ace) {val=11;}
 	}
 	
 	
