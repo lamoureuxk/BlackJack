@@ -1,4 +1,4 @@
-package edu.wit.comp2000.lists.blackjack;//Test comment
+package edu.wit.comp2000.lists.blackjack;//Test comment lol
 
 /** 
  * @author Karl Lamoureux
