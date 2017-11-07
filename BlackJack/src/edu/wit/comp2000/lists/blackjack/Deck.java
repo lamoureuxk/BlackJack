@@ -23,6 +23,10 @@ public class Deck extends Pile
 		shuffle();
 	}
 	
+	/**
+	 * Tests constructor and shuffle
+	 * @param args
+	 */
 	public static void main(String [] args) 
 	{
 		Deck x = new Deck();
