@@ -10,9 +10,31 @@ import java.util.List;
 public class Player {
     private Hand hand = new Hand();
     private String name;
+    private int chips;
+    private int ante;
 
     Player(String name) {
         this.name = name;
+        chips=200;
+        ante=0;
+    }
+    
+    public void setAnte(int a) {
+    	ante=a;
+    }
+    
+    public void loseBet() {
+    	chips-=ante;
+    	ante=0;
+    }
+    
+    public void winBet() {
+    	chips+=ante;
+    	ante=0;
+    }
+    
+    public int chips() {
+    	return chips;
     }
 
     public void addToHand(Card card) {
