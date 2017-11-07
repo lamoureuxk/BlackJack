@@ -1,11 +1,21 @@
 package edu.wit.comp2000.lists.blackjack;
 
+import java.util.ArrayList;
+
 /**
  * 
  * @author Marcus S.
  *
  */
 public class Hand extends Pile{
+
+	public void add(Card card) {
+		this.addCard(card);
+	}
+
+	public ArrayList<Card> getCards() {
+		return this.cards;
+	}
 
 	/**
 	 * @return - int representing value of hand, if there are aces, 10 will be subtracted for each ace until the value is under 21
@@ -57,5 +67,5 @@ public class Hand extends Pile{
 		hand.addCard(deck.drawCard());
 		System.out.println(hand);
 	}
-	
+
 }
