@@ -1,7 +1,15 @@
 package edu.wit.comp2000.lists.blackjack;
 
+/**
+ * 
+ * @author Marcus S.
+ *
+ */
 public class Hand extends Pile{
 
+	/**
+	 * @return - int representing value of hand, if there are aces, 10 will be subtracted for each ace until the value is under 21
+	 */
 	public int getValue()
 	{
 		int value = 0;
@@ -21,6 +29,9 @@ public class Hand extends Pile{
 		return value;
 	}
 	
+	/**
+	 * @return - number of aces in the hand
+	 */
 	private int numberOfAces()
 	{
 		int aces=0;
