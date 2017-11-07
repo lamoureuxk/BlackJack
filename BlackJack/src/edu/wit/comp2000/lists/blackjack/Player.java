@@ -27,10 +27,6 @@ public class Player {
     }
  
     public int getHandValue() {//Hand has a getValue method that accounts for aces, we may want to use that instead
-        int value = 0;
-        for (Card card: hand.getCards()) {
-            value += card.getValue();
-        }
-        return value;
+        hand.getValue();
     }
 }
