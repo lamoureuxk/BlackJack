@@ -2,6 +2,11 @@ package edu.wit.comp2000.lists.blackjack;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Daniel
+ *
+ */
 public class Player {
     private Hand hand = new Hand();
     private String name;
@@ -24,6 +29,11 @@ public class Player {
 
     public List<Card> getHand() {
         return hand.getCards();
+    }
+    
+    public void printHand() 
+    {
+    	System.out.println(hand);
     }
  
     public int getHandValue() {//Hand has a getValue method that accounts for aces, we may want to use that instead

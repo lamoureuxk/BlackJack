@@ -8,17 +8,30 @@ public class Main {
         Deck deck = new Deck();
         List<Player> playerList = new ArrayList<>();
         Player dealer = new Player("DEALER");
-        Player player = new Player("PLAYER 1");
         Scanner input = new Scanner(System.in);
+        Player player = new Player("Player");
 
         // Add all players to the player list
         playerList.add(dealer);
         playerList.add(player);
-
-        // Give 'player a name
-        System.out.print("Please enter your name: ");
-        String name = input.next();
-        player.setName(name);
+        
+//        boolean invalid=false;
+//        int numberOfPlayers=0;
+//        do {
+//        	invalid=false;
+//        	System.out.print("How many Players? (1 to 7)");
+//        	numberOfPlayers=input.nextInt();
+//        	
+//        	if(numberOfPlayers<1 || numberOfPlayers>7) 
+//        	{ invalid=true; }
+//        	
+//        }while(invalid);
+//        
+//        for(int i=0; i<numberOfPlayers; i++) 
+//        {
+//        	playerList.add(createPlayer());
+//        }
+        
 
         // Deal 2 cards to each player for the initial hand
         for (int i = 0; i < 1; i++) {
@@ -27,7 +40,7 @@ public class Main {
             }
         }
 
-        // Show the payers hand
+        // Show the players hand
         printCurrentHand(player);
         System.out.print("\n");
 
@@ -40,19 +53,20 @@ public class Main {
             // Give the player another card and check if the players hand is valid
             if (userInput.equalsIgnoreCase("c")) {
                 if (player.getHandValue() <= 21) {
-                    Card card = deck.drawCard();
-                    player.addToHand(card);
-//                    System.out.printf("Added %s the the players hand.%n", card.toString());
+                    player.addToHand(deck.drawCard());
+                    // System.out.printf("Added %s the the players hand.%n", card.toString());
                     printCurrentHand(player);
                 } else {
-                    System.out.printf("You loose your hand value is: %d%n", player.getHandValue());
+                    System.out.printf("You lose your hand value is: %d%n", player.getHandValue());
                     break;
                 }
             }
+            
             // Print the players hand
             else if (userInput.equalsIgnoreCase("h")) {
                 printCurrentHand(player);
             }
+            
             // Stop the dealing and evaluate the game's outcome.
             else if (userInput.equalsIgnoreCase("s")) {
                 printCurrentHand(player);
@@ -75,6 +89,19 @@ public class Main {
         System.out.println("DONE!");
 
     }
+    
+    
+	private static Player createPlayer() 
+    {
+		Scanner in = new Scanner(System.in);
+    	// Give 'player a name
+        System.out.print("Please enter your name: ");
+        in.close();
+        return new Player((in.nextLine()));
+        
+    }
+	
+
 
     private static void printCurrentHand(Player player) {
         System.out.printf("%s's current hand is: %s With a total value of: %s%n", player.getName(), player.getHand(), player.getHandValue());
