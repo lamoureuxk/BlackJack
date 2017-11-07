@@ -19,7 +19,7 @@ public class Player {
         hand.addCard(card);
     }
 
-    public String getName() {
+    public String toString() {
         return name;
     }
 
