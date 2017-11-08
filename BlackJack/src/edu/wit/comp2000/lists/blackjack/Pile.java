@@ -48,11 +48,11 @@ public class Pile
 	{
 		if(this.isEmpty()) return "Pile is Empty";
 		
-		String output="";
+		String output="[ ";
 		
 		for(Card c  : cards) { output+= (c+", "); }
 		
-		return output.substring(0, output.length()-2);
+		return output.substring(0, output.length()-2)+" ]";
 	}
 	
 	/**
