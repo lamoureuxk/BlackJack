@@ -10,6 +10,7 @@ public class Main {
 	 */
     public static void main(String... args) 
     {
+    	//Initialization
         Deck deck = new Deck();
         List<Player> playerList = new ArrayList<>();
         ArrayList<Player> winners = new ArrayList<>();
@@ -22,7 +23,7 @@ public class Main {
         boolean invalid=false;
         int numberOfPlayers=0;
         do {
-        	invalid=false;    
+        	invalid=false;
         	System.out.print("How many Players? (1 to 7) ");
         	
         	//block handles non-integer input
@@ -50,7 +51,9 @@ public class Main {
         }
         System.out.println();
 
+        //This is put in "just in case"
         input.reset();
+        
         // Main game logic
         while (!playerList.isEmpty()) 
         {
@@ -146,7 +149,7 @@ public class Main {
     
     
     /**
-     * 
+     * This is the Player's turn. Would they like to Hit, Stay, or Double Down if applicable
      * @param player
      * @param deck
      */
@@ -255,7 +258,7 @@ public class Main {
      * 
      * @param player
      * @param dealer
-     * @return
+     * @return True if player beats dealer, false otherwise
      */
     private static boolean win(Player player, Player dealer) 
     {
@@ -278,10 +281,10 @@ public class Main {
     }
     
     /**
-     * 
+     * This is the dealer's turn. They hit until their hand's value is 16 or greater
      * @param dealer
      * @param deck
-     * @return
+     * @return Dealer's final hand value
      */
     private static int dealerHit(Player dealer, Deck deck) 
     {
@@ -299,7 +302,7 @@ public class Main {
     }
     
     /**
-     * Deals two cards from dealer to player
+     * Deals two cards from deck to player
      * @param p - Player
      * @param d - Deck
      */
@@ -339,8 +342,8 @@ public class Main {
 	
 	/**
 	 * Returns cards from players hand to the deck
-	 * @param p
-	 * @param d
+	 * @param p - Player
+	 * @param d - Dealer
 	 */
 	private static void clearHand(Player p, Deck d) 
 	{
