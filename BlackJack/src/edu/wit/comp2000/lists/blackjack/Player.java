@@ -1,6 +1,6 @@
 package edu.wit.comp2000.lists.blackjack;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * 
@@ -14,13 +14,46 @@ public class Player {
     private int ante;
     private boolean doubleDown;
 
-    Player(String name) {
+    Player(String name, int c) {
         this.name = name;
-        chips=200;
+        chips=c;
         ante=0;
         doubleDown=false;
     }
     
+    /**
+     * 
+     * @return false if player has quit
+     */
+    public boolean betOrQuit() {
+    	@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+    	String choice="4";
+    	while(!(choice.equals("b")||choice.equals("q"))) {
+    		System.out.println("Would "+name+" like to (b)et or (q)uit?");
+    		choice= input.nextLine();
+    	}
+    	if(choice.equals("q")) {
+    		System.out.println(name+" has quit with "+chips+" chips!");
+    		return false;
+    	}
+    	else {
+    		ante=-1;
+    		while(ante<=0||ante>chips) 
+            {
+    	        try 
+    	        {
+    	        	System.out.println(name+" has "+chips+" chips\nHow much would "+name+" like to bet? (Max 200 or chips you have)");
+    	        	ante= input.nextInt();
+    	        }
+    	        catch(Exception e) 
+    	        {
+    	        	input.nextLine();
+    	        }
+            }
+    		return true;
+    	}
+    }
     
     public void setAnte(int a) {
     	ante=a;
@@ -29,23 +62,27 @@ public class Player {
     public void losesBet() {
     	if(doubleDown) {
 	    	chips-= 2*ante;
-	    	ante=0;
+	    	if(chips<0) { chips=0; }
+	    	System.out.println(name+" has lost "+2*ante+" chips and now has "+chips+" chips");
     	}
     	else {
     		chips-= ante;
-	    	ante=0;
+    		if(chips<0) { chips=0; }
+	    	System.out.println(name+" has lost "+ante+" chips and now has "+chips+" chips");
     	}
+    	ante=0;
     }
     
     public void winsBet() {
     	if(doubleDown) {
 	    	chips+= 2*ante;
-	    	ante=0;
+	    	System.out.println(name+" has won "+2*ante+" chips and now has "+chips+" chips");
     	}
     	else {
     		chips+= ante;
-	    	ante=0;
+    		System.out.println(name+" has won "+ante+" chips and now has "+chips+" chips");
     	}
+    	ante=0;
     }
     
     public void doubleDown(boolean choice) 
@@ -61,6 +98,7 @@ public class Player {
         hand.addCard(card);
     }
 
+    @Override
     public String toString() {
         return name;
     }

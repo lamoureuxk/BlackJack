@@ -12,7 +12,10 @@ public class Main {
     {
         Deck deck = new Deck();
         List<Player> playerList = new ArrayList<>();
-        Player dealer = new Player("DEALER");
+        ArrayList<Player> winners = new ArrayList<>();
+        ArrayList<Player> losers = new ArrayList<>();
+        ArrayList<Player> quitters = new ArrayList<>();
+        Player dealer = new Player("DEALER", 0);
         Scanner input = new Scanner(System.in);
  
         //asks for valid number of players
@@ -51,6 +54,20 @@ public class Main {
         // Main game logic
         while (!playerList.isEmpty()) 
         {
+        	//Asks if players want to play or quit
+        	for(Player p : playerList) { if(!(p.betOrQuit())) quitters.add(p); }
+        	
+        	//removes quitters
+        	for(Player p: quitters) { playerList.remove(p); }
+        	quitters.clear();
+        	
+        	//if all players quit
+        	if(playerList.isEmpty()) 
+        	{
+        		System.out.println("All Players have quit");
+        		break;
+        	}
+        	
         	//deal initial hands, set double down to default of false
         	dealInitialTwoCards(dealer, deck);
             for(Player p : playerList) { dealInitialTwoCards(p, deck); p.doubleDown(false);}
@@ -61,33 +78,55 @@ public class Main {
             	hitOrStay(player, deck);
             }
             
+            //dealer takes turn, hits until hand value is 16 or greater, then stays
             dealerHit(dealer, deck);
-            System.out.println("Dealer's hand is "+dealer.getHand()+"\n");
+            System.out.println("Dealer's hand is "+dealer.getHand()+" value: "+dealer.getHandValue());
+            if(dealer.getHandValue()>21) { System.out.println("Dealer busts\n"); }
             
-            ArrayList<Player> losers = new ArrayList<>();
-            
+            //Displays winners and losers, adds them to winners or losers list
             for(Player p : playerList) 
             {
             	if(win(p,dealer)) 
             	{
-            		
             		System.out.println(p+" wins against dealer");
+            		
+            		winners.add(p);
             	}
             	else 
             	{
-            		System.out.println(p+" loses against dealer, and leaves");
+            		System.out.println(p+" loses against dealer");
             		
-            		//Player who loses is removed
             		losers.add(p);
             		
             	}
             }
             System.out.println();
             
-            //deal with winners and losers
+            //deal with winners
+            for(Player p : winners) 
+            {
+            	clearHand(p, deck);
+            	
+            	p.winsBet();
+            	if(p.chips()>=1000) 
+            	{
+            		System.out.println(p+" has won as many chips that they are allowed to win, and has to leave");
+            		playerList.remove(p);
+            	}
+            }
+            winners.clear();
+            
+            //deal with losers
             for(Player p : losers) 
             {
-            	playerList.remove(p);
+            	clearHand(p, deck);
+            	p.losesBet();
+            	
+            	if(p.chips()<=0) 
+            	{
+            		System.out.println(p+" has lost all chips, and leaves");
+            		playerList.remove(p);
+            	}
             }
             losers.clear();
             
@@ -96,7 +135,8 @@ public class Main {
             if(!playerList.isEmpty())
             	for(Player p : playerList) { clearHand(p,deck); }
             
-        }
+        }//Game is over after this
+        
         System.out.println("DONE!");
         input.close();
     }
@@ -234,9 +274,9 @@ public class Main {
     }
     
     /**
-     * 
-     * @param p
-     * @param d
+     * Deals two cards from dealer to player
+     * @param p - Player
+     * @param d - Deck
      */
     private static void dealInitialTwoCards(Player p, Deck d) 
     {
@@ -244,8 +284,8 @@ public class Main {
     }
     
     /**
-     * 
-     * @return
+     * Asks for Player name, makes new player
+     * @return - The new Player
      */
 	private static Player createPlayer() 
     {
@@ -253,19 +293,33 @@ public class Main {
 		Scanner in = new Scanner(System.in);
     	// Give 'player a name
         System.out.print("please enter your name: ");
-        Player p = new Player(in.nextLine());
+        String name = in.nextLine();
+        int chips=-1;
+        while(chips<=0 || chips>500) 
+        {
+	        try 
+	        {
+	        	System.out.println("How many chips would you like to buy? (max 500)");
+	        	chips= in.nextInt();
+	        }
+	        catch(Exception e) 
+	        {
+	        	in.nextLine();
+	        }
+        }
+        Player p = new Player(name,chips);
         //in.close();
         return p;
     }
 	
 	/**
-	 * 
+	 * Returns cards from players hand to the deck
 	 * @param p
 	 * @param d
 	 */
 	private static void clearHand(Player p, Deck d) 
 	{
-		while(!p.getHand().isEmpty()) 
+		while(!(p.getHand().isEmpty())) 
         {
         	d.addCard(p.getHand().remove(0));
         }
