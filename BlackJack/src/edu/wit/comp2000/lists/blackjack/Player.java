@@ -11,15 +11,19 @@ public class Player {
     private Hand hand = new Hand();
     private String name;
     private int chips;
+    private int initialChips;
     private int ante;
     private boolean doubleDown;
 
     Player(String name, int c) {
         this.name = name;
         chips=c;
+        initialChips=c;
         ante=0;
         doubleDown=false;
     }
+    
+    public int initialChips() {return initialChips;}
     
     /**
      * 
@@ -34,7 +38,7 @@ public class Player {
     		choice= input.nextLine();
     	}
     	if(choice.equals("q")) {
-    		System.out.println(name+" has quit with "+chips+" chips!");
+    		System.out.println(name+" has quit with "+chips+" chips!\n");
     		return false;
     	}
     	else {

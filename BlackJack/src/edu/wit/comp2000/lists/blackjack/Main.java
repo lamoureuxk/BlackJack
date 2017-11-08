@@ -54,6 +54,8 @@ public class Main {
         // Main game logic
         while (!playerList.isEmpty()) 
         {
+        	deck.shuffle();
+        	
         	//Asks if players want to play or quit
         	for(Player p : playerList) { if(!(p.betOrQuit())) quitters.add(p); }
         	
@@ -82,6 +84,7 @@ public class Main {
             dealerHit(dealer, deck);
             System.out.println("Dealer's hand is "+dealer.getHand()+" value: "+dealer.getHandValue());
             if(dealer.getHandValue()>21) { System.out.println("Dealer busts\n"); }
+            else { System.out.println(); }
             
             //Displays winners and losers, adds them to winners or losers list
             for(Player p : playerList) 
@@ -108,9 +111,9 @@ public class Main {
             	clearHand(p, deck);
             	
             	p.winsBet();
-            	if(p.chips()>=1000) 
+            	if((p.chips()-p.initialChips()) >1000)
             	{
-            		System.out.println(p+" has won as many chips that they are allowed to win, and has to leave");
+            		System.out.println(p+" has won as many chips that they are allowed to win (1000), and has to leave");
             		playerList.remove(p);
             	}
             }
