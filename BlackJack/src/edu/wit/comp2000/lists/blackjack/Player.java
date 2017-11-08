@@ -26,7 +26,7 @@ public class Player {
     	ante=a;
     }
     
-    public void loseBet() {
+    public void losesBet() {
     	if(doubleDown) {
 	    	chips-= 2*ante;
 	    	ante=0;
@@ -37,7 +37,7 @@ public class Player {
     	}
     }
     
-    public void winBet() {
+    public void winsBet() {
     	if(doubleDown) {
 	    	chips+= 2*ante;
 	    	ante=0;

@@ -129,7 +129,7 @@ public class Main {
 	    		player.addToHand(deck.drawCard());
 	    		if(player.getHandValue()>21) 
 	    		{
-	    			System.out.println("\n"+player.getHand());
+	    			System.out.println("\n"+player+"'s hand is "+player.getHand());
 	    			System.out.println("\n"+player+" Busts\n");
 	    			break;
 	    		}
