@@ -12,25 +12,45 @@ public class Player {
     private String name;
     private int chips;
     private int ante;
+    private boolean doubleDown;
 
     Player(String name) {
         this.name = name;
         chips=200;
         ante=0;
+        doubleDown=false;
     }
+    
     
     public void setAnte(int a) {
     	ante=a;
     }
     
     public void loseBet() {
-    	chips-=ante;
-    	ante=0;
+    	if(doubleDown) {
+	    	chips-= 2*ante;
+	    	ante=0;
+    	}
+    	else {
+    		chips-= ante;
+	    	ante=0;
+    	}
     }
     
     public void winBet() {
-    	chips+=ante;
-    	ante=0;
+    	if(doubleDown) {
+	    	chips+= 2*ante;
+	    	ante=0;
+    	}
+    	else {
+    		chips+= ante;
+	    	ante=0;
+    	}
+    }
+    
+    public void doubleDown(boolean choice) 
+    {
+    	doubleDown= choice;
     }
     
     public int chips() {

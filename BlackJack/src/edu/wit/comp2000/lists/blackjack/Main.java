@@ -40,19 +40,18 @@ public class Main {
         // Main game logic
         while (!playerList.isEmpty()) 
         {
-        	//deal initial hands
+        	//deal initial hands, set double down to default of false
         	dealInitialTwoCards(dealer, deck);
-            for(Player p : playerList) { dealInitialTwoCards(p, deck);}
+            for(Player p : playerList) { dealInitialTwoCards(p, deck); p.doubleDown(false);}
             
             //ask each player if they want to hit or stay until they bust or are satisfied
             for(Player player : playerList) 
             {
-            	
             	hitOrStay(player, deck);
             }
             
             dealerHit(dealer, deck);
-            System.out.println("Dealer's hand is "+dealer.getHand());
+            System.out.println("Dealer's hand is "+dealer.getHand()+"\n");
             
             ArrayList<Player> losers = new ArrayList<>();
             
@@ -99,7 +98,8 @@ public class Main {
      */
     private static void hitOrStay(Player player, Deck deck) 
     {
-    	Scanner in = new Scanner(System.in);
+    	@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
     	String choice="h";
     	
     	while(choice.equals("h")) 
@@ -112,9 +112,19 @@ public class Main {
     		}
 	    	System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it or (s)tay?");
 	    	
-	    	choice = in.nextLine();
+	    	//this block handles invalid choices
+	    	choice = "t";
+	    	while(!(choice.equals("h")||choice.equals("s"))) 
+	    	{
+	    		choice = in.nextLine();
+	    		if(!(choice.equals("h")||choice.equals("s"))) 
+	    		{
+	    			System.out.println("\nInvalid choice, Would "+player+" like to (h)it or (s)tay?");
+	    		}
+	    	}
 	    	
-	    	if(choice.equals("h")) //they want to hit
+	    	//they want to hit
+	    	if(choice.equals("h")) 
 	    	{
 	    		player.addToHand(deck.drawCard());
 	    		if(player.getHandValue()>21) 
@@ -124,7 +134,37 @@ public class Main {
 	    			break;
 	    		}
 	    	}
-	    	else// they want to stay
+	    	
+	    	//if they want to double down, currently this block is unreachable, until the block for valid choices allows "d"
+	    	else if(choice.equals("d")) 
+	    	{
+	    		player.addToHand(deck.drawCard());
+	    		player.doubleDown(true);
+	    		
+	    		if(player.getHandValue()>21) 
+	    		{
+	    			System.out.println("\n"+player.getHand());
+	    			System.out.println("\n"+player+" Busts\n");
+	    			break;
+	    		}
+	    		
+	    		else if(player.getHandValue()==21) 
+	    		{
+	    			System.out.println("\n"+player+"'s hand is: "+player.getHand());
+	    			System.out.println("\n"+player+" is at 21!\n");
+	    			break;
+	    		}
+	    		
+	    		else 
+	    		{
+		    		System.out.println("\n"+player.getHand());
+		    		System.out.println("\n"+player+"'s total hand value is "+player.getHandValue()+"\n");
+		    		break;
+	    		}
+	    	}//end of double down block
+	    	
+	    	// they want to stay
+	    	else
 	    	{
 	    		System.out.println("\n"+player.getHand());
 	    		System.out.println("\n"+player+"'s total hand value is "+player.getHandValue()+"\n");
@@ -198,6 +238,7 @@ public class Main {
      */
 	private static Player createPlayer() 
     {
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
     	// Give 'player a name
         System.out.print("please enter your name: ");
