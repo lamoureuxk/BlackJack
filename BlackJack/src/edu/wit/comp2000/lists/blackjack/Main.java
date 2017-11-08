@@ -2,6 +2,12 @@ package edu.wit.comp2000.lists.blackjack;
 
 import java.util.*;
 
+/**
+ * 
+ * @author Karl Lamoureux
+ * @co-author Daniel
+ *
+ */
 public class Main {
 
 	/**
