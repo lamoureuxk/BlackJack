@@ -21,7 +21,18 @@ public class Main {
         do {
         	invalid=false;    
         	System.out.print("How many Players? (1 to 7) ");
-        	numberOfPlayers=input.nextInt();
+        	
+        	//block handles non-integer input
+        	try 
+        	{
+        		numberOfPlayers=input.nextInt();
+        	}
+        	catch(Exception e) 
+        	{
+        		invalid=true;
+        		input.nextLine();//clears scanner
+        		continue;
+        	}
         	
         	if(numberOfPlayers<1 || numberOfPlayers>7) 
         	{ invalid=true; }
