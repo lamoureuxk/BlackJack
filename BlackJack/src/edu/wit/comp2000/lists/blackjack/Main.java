@@ -19,7 +19,7 @@ public class Main {
         boolean invalid=false;
         int numberOfPlayers=0;
         do {
-        	invalid=false;
+        	invalid=false;    
         	System.out.print("How many Players? (1 to 7) ");
         	numberOfPlayers=input.nextInt();
         	
@@ -123,16 +123,11 @@ public class Main {
 	    			System.out.println("\n"+player+" Busts\n");
 	    			break;
 	    		}
-	    		if(player.getHandValue()==21) 
-	    		{
-	    			System.out.println("\n"+player.getHand());
-	    			System.out.println("\n"+player+" is at 21!\n");
-	    		}
 	    	}
 	    	else// they want to stay
 	    	{
 	    		System.out.println("\n"+player.getHand());
-	    		System.out.println("\n"+player+"'s total hand value is "+player.getHandValue());
+	    		System.out.println("\n"+player+"'s total hand value is "+player.getHandValue()+"\n");
 	    	}
 	    	
 	    	
