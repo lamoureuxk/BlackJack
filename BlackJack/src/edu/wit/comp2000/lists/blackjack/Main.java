@@ -164,19 +164,41 @@ public class Main {
     			System.out.println("\n"+player+" is at 21!\n");
     			break;
     		}
-	    	System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it or (s)tay?");
-	    	
-	    	//this block handles invalid choices
-	    	choice = "t";
-	    	while(!(choice.equals("h")||choice.equals("s"))) 
-	    	{
-	    		choice = in.nextLine();
-	    		if(!(choice.equals("h")||choice.equals("s"))) 
-	    		{
-	    			System.out.println("\nInvalid choice, Would "+player+" like to (h)it or (s)tay?");
-	    		}
-	    	}
-	    	
+    		
+    		//Not enough chips to double down
+    		if(player.chips()< (2*player.ante())) 
+    		{
+	    		System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it or (s)tay?");
+	    		
+	    		//this block handles choices
+		    	choice = "t";
+		    	while(!(choice.equals("h")||choice.equals("s"))) 
+		    	{
+		    		choice = in.nextLine();
+		    		if(!(choice.equals("h")||choice.equals("s"))) 
+		    		{
+		    			System.out.println("\nInvalid choice, Would "+player+" like to (h)it or (s)tay?");
+		    		}
+		    	}
+    		}
+    		
+    		//Enough chips to double down
+    		else 
+    		{
+    			System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it, (s)tay, (d)ouble down?");
+    			
+    			//this block handles choices
+    	    	choice = "t";
+    	    	while(!(choice.equals("h")||choice.equals("s")||choice.equals("d"))) 
+    	    	{
+    	    		choice = in.nextLine();
+    	    		if(!(choice.equals("h")||choice.equals("s")||choice.equals("d"))) 
+    	    		{
+    	    			System.out.println("\nInvalid choice, Would "+player+" like to (h)it, (s)tay, (d)ouble down");
+    	    		}
+    	    	}
+    		}
+    		
 	    	//they want to hit
 	    	if(choice.equals("h")) 
 	    	{

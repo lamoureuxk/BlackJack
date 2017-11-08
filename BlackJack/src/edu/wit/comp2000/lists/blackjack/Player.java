@@ -25,6 +25,8 @@ public class Player {
     
     public int initialChips() {return initialChips;}
     
+    public int ante() {return ante;}
+    
     /**
      * 
      * @return false if player has quit
@@ -43,7 +45,7 @@ public class Player {
     	}
     	else {
     		ante=-1;
-    		while(ante<=0||ante>chips) 
+    		while(ante<=0||ante>chips || ante>200) 
             {
     	        try 
     	        {
