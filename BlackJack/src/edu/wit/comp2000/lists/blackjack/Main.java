@@ -105,7 +105,7 @@ public class Main {
             }
             System.out.println();
             
-            //deal with winners
+            //deal with winners 
             for(Player p : winners) 
             {
             	clearHand(p, deck);
