@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  * @author Daniel
- *
+ * @co-author Karl
  */
 public class Player {
     private Hand hand = new Hand();
