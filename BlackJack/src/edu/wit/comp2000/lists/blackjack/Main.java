@@ -164,6 +164,7 @@ public class Main {
     	@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
     	String choice="h";
+    	boolean firstTime=true;
     	
     	while(choice.equals("h")) 
     	{
@@ -174,8 +175,8 @@ public class Main {
     			break;
     		}
     		
-    		//Not enough chips to double down
-    		if(player.chips()< (2*player.ante())) 
+    		//Cannot double down, either too few chips or it is not first hit
+    		if(player.chips()< (2*player.ante())||!firstTime) 
     		{
 	    		System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it or (s)tay?");
 	    		
@@ -191,8 +192,8 @@ public class Main {
 		    	}
     		}
     		
-    		//Enough chips to double down
-    		else 
+    		//Can double down, first hit with enough chips
+    		else if(firstTime)
     		{
     			System.out.println(player+"'s hand is: "+player.getHand()+"\n\nWould "+player+" like to (h)it, (s)tay, (d)ouble down?");
     			
@@ -207,6 +208,8 @@ public class Main {
     	    		}
     	    	}
     		}
+    		
+    		firstTime=false; 
     		
 	    	//they want to hit
 	    	if(choice.equals("h")) 
