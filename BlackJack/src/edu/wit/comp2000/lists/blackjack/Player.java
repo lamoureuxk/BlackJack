@@ -15,6 +15,11 @@ public class Player {
     private int ante;
     private boolean doubleDown;
 
+    /**
+     * 
+     * @param name - name of player
+     * @param c - Chips bought at beginning
+     */
     Player(String name, int c) {
         this.name = name;
         chips=c;
@@ -23,13 +28,21 @@ public class Player {
         doubleDown=false;
     }
     
+    /**
+     * 
+     * @return Amount of chips player initially started with
+     */
     public int initialChips() {return initialChips;}
-    
-    public int ante() {return ante;}
     
     /**
      * 
-     * @return false if player has quit
+     * @return How many chips player has bet on this hand
+     */
+    public int ante() {return ante;}
+    
+    /**
+     * asks player if they would like to bet or quit, if they choose bet, sets the ante
+     * @return false if player has quit, true if player has bet
      */
     public boolean betOrQuit() {
     	@SuppressWarnings("resource")
@@ -61,10 +74,17 @@ public class Player {
     	}
     }
     
+    /**
+     * 
+     * @param a - ante to be set
+     */
     public void setAnte(int a) {
     	ante=a;
     }
     
+    /**
+     * handles a losing bet, subtracts chips based on player's ante and if they doubled down
+     */
     public void losesBet() {
     	if(doubleDown) {
 	    	chips-= 2*ante;
@@ -79,6 +99,9 @@ public class Player {
     	ante=0;
     }
     
+    /**
+     * handles a winning bet, adds chips based on player's ante and if they doubled down
+     */
     public void winsBet() {
     	if(doubleDown) {
 	    	chips+= 2*ante;
@@ -91,15 +114,27 @@ public class Player {
     	ante=0;
     }
     
+    /**
+     * if player doubles down, boolean doubleDown is set to true
+     * @param choice
+     */
     public void doubleDown(boolean choice) 
     {
     	doubleDown= choice;
     }
     
+    /**
+     * 
+     * @return current amount of chips owned by player
+     */
     public int chips() {
     	return chips;
     }
 
+    /**
+     * adds card to hand
+     * @param card - card to be added
+     */
     public void addToHand(Card card) {
         hand.addCard(card);
     }
@@ -109,19 +144,34 @@ public class Player {
         return name;
     }
 
+    /**
+     * 
+     * @param name - name for character
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @return - hand of the player
+     */
     public List<Card> getHand() {
         return hand.getCards();
     }
     
+    /**
+     * Prints players hand
+     */
     public void printHand() 
     {
     	System.out.println(hand);
     }
  
+    /**
+     * Uses hand's getValue() method
+     * @return value of hand
+     */
     public int getHandValue() {//Hand has a getValue method that accounts for aces, we may want to use that instead
         return hand.getValue();
     }

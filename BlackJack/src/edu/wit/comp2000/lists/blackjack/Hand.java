@@ -9,10 +9,18 @@ import java.util.ArrayList;
  */
 public class Hand extends Pile{
 
+	/**
+	 * adds card to hand
+	 * @param card - card to be added
+	 */
 	public void add(Card card) {
 		this.addCard(card);
 	}
 
+	/**
+	 * 
+	 * @return - list of cards in hand
+	 */
 	public ArrayList<Card> getCards() {
 		return this.cards;
 	}
