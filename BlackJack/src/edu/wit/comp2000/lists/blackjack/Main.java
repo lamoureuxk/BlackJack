@@ -122,7 +122,7 @@ public class Main {
             	p.winsBet();
             	if((p.chips()-p.initialChips()) >1000)
             	{
-            		System.out.println(p+" has won as many chips that they are allowed to win (1000), and has to leave");
+            		System.out.println(p+" has won as many chips that they are allowed to win (1000), and has to leave with "+p.chips()+" chips!");
             		playerList.remove(p);
             	}
             }
@@ -220,7 +220,7 @@ public class Main {
 	    		}
 	    	}
 	    	
-	    	//if they want to double down, currently this block is unreachable, until the block for valid choices allows "d"
+	    	//if they want to double down
 	    	else if(choice.equals("d")) 
 	    	{
 	    		player.addToHand(deck.drawCard());
@@ -257,7 +257,6 @@ public class Main {
 	    	
 	    	
     	}
-    	//in.close();
     }
     
     /**
@@ -342,7 +341,6 @@ public class Main {
 	        }
         }
         Player p = new Player(name,chips);
-        //in.close();
         return p;
     }
 	
